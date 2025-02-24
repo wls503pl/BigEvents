@@ -6,10 +6,12 @@ I don't want to discuss the specific incident, I just want to analyze the hackin
 
 Whenever you encounter such a hack, first look for the wallet in question. Exchange wallets are basically marked on etherscan, so just search for them.
 <br>
+
 ![Bybit_Cold_Wallet](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/Bybit_Cold_Wallet.png)<br>
 
 Look at this unlucky wallet, marked as Bybit cold wallet 1, but the money is only a pitiful twenty dollars. Most likely it is gone. Scroll down to see the historical transactions, as expected, 2 days ago, the money in this wallet was taken away like \"fallen leaves in the autumn wind, not a single hair was left\". ^-^
 <br>
+
 ![withdrawn_Bybit_cold_wallet](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/withdrawn_Bybit_cold_wallet.png)<br>
 
 ## Crime process
@@ -17,6 +19,7 @@ Look at this unlucky wallet, marked as Bybit cold wallet 1, but the money is onl
 Now that we have found the wallet in question, we can analyze the crime process. Firstly, let's take a look at the origin of this unlucky wallet.
 
 <br>
+
 ![walletContract_Analysis](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/walletContract_Analysis.png)<br>
 
 As can be seen from the above picture, first of all, it is a smart contract wallet, which means it has code logic. A closer look at the open source code logic reveals the keywords "proxy", "gnosis.io", so it is most likely a **Safe Wallet**.
@@ -31,14 +34,19 @@ The names of the first few transactions are sweepERC20 sweepETH. Just looking at
 
 The transaction name at the bottom is **\"Exec Transaction\"**, which is a built-in function of the safe wallet. All transactions are conducted through it. This must be the starting point of this case. Let’s take a closer look.
 <br>
+
 ![transactionHash](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/transactionHash.png)<br>
 
 Look at **\"Overview\"** tag, exactly **\"Input Data\"**:
 <br>
-![execTransaction_InputData1](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/execTransaction_InputData1.png)<br>
-![execTransaction_InputData2](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/execTransaction_InputData2.png)<br>
-![execTransaction_InputData3](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/execTransaction_InputData3.png)<br>
-![execTransaction_InputData4](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/execTransaction_InputData4.png)<br>
+
+![execTransaction_InputData1](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/execTransaction_InputData1.png)<br><br>
+
+![execTransaction_InputData2](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/execTransaction_InputData2.png)<br><br>
+
+![execTransaction_InputData3](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/execTransaction_InputData3.png)<br><br>
+
+![execTransaction_InputData4](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/execTransaction_InputData4.png)<br><br>
 
 The transaction details are as follows:
 
@@ -80,12 +88,14 @@ In brief, the method **\"0xa9059cbb\"** of the contract **\"0x96221423681A6d52E1
 
 So let's firstly take a look at what this **\"0x96221423681A6d52E184D440a8eFCEbB105C7242\"** contract is.
 <br>
+
 ![ContractDeployedByHackers](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/ContractDeployedByHackers.png)<br>
 
 I opened it and saw that it was not open source. It was probably a contract deployed by **hackers**.
 
 Is this the end of the contract analysis? No, no, no, you must have thought of it. Even if it is not open source, we can find out what has been changed in this transaction.
 <br>
+
 ![hackerChangesProxy](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/hackerChangesProxy.png)<br>
 
 Let's take a closer look at the transaction. OK, we found the problem. This transaction changed the proxy pointing.
@@ -94,8 +104,9 @@ To explain briefly, the deployment of safe wallets uses proxy mode to save gas a
 
 We can understand it by looking back at the sweep operations of the wallet. After the hacker took over the wallet, he ordered the wallet to spit out the money, and the wallet obeyed all the commands.
 <br>
-![transferSmallAmountOfUSDT](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/transferSmallAmountOfUSDT.png)<br>
-![transfer_stETH](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/transfer_stETH.png)<br>
-![transfer_mETH](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/transfer_mETH.png)<br>
-![transfer_cmETH](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/transfer_cmETH.png)<br>
+
+![transferSmallAmountOfUSDT](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/transferSmallAmountOfUSDT.png)<br><br>
+![transfer_stETH](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/transfer_stETH.png)<br><br>
+![transfer_mETH](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/transfer_mETH.png)<br><br>
+![transfer_cmETH](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/transfer_cmETH.png)<br><br>
 ![transfer_cmETH_Details](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/img/transfer_cmETH_Details.png)
