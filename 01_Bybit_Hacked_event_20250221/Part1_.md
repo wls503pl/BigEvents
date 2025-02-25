@@ -1,6 +1,8 @@
 # Abstruct
 
-I don't want to discuss the specific incident, I just want to analyze the hacking incident from a technical perspective.
+I don't want to discuss the specific incident, I just want to analyze the hacking incident from a technical perspective.<br>
+
+**\"本节只从个人角度分析一下黑客作案的方式\"(This section only analyzes the hacker's method from a personal perspective.)**
 
 ## Wallet with problems
 
