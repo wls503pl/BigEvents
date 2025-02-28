@@ -3,24 +3,24 @@
 How to sell and launder the money stolen from the chain has always been a technical job. Here is analysis chart.
 
 <br>
-![]()<br>
+![analysisChart](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/part2Img/analysisChart.png)<br>
 
 First, let’s take a look at where the hacker spit out the money after instructing the wallet to spit it out.
 Etherscan has been thoughtfully marked with **\"Bybit Exploiter 1\"**, and you can also see how much assets were stolen.
 
 <br>
-![]()<br>
+![Bybit_transferERC20](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/part2Img/Bybit_transferERC20.png)<br>
 
 The largest asset is the **stETH**, 90,000 of which were stolen. A simple calculation revealed that it didn’t match, as $1.5 billion was stolen from the wallet.
 Looking back, I found that another transaction stole nearly 400,000 **ETH**, which was also spit out to **Bybit Exploiter 1**, so the number is correct now.
 
 <br>
-![]()<br>
+![Bybit_transferETH](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/part2Img/Bybit_transferETH.png)<br>
 
 OK, let’s continue reading and click on **Bybit Exploiter 1** to find out where the money went.
 
 <br>
-![]()<br>
+![BreakupAccounts](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/part2Img/BreakupAccounts.png)<br>
 
 I clicked in and saw that it was exactly what I expected. The first step in money laundering is to break it up.
 The hacker methodically divided the ETH into 10,000 pieces and put them into various money laundering wallets, a total of 44 wallets.
@@ -32,14 +32,14 @@ It is obvious that hackers want to use ETH to launder money and sell stolen good
 Let's pick a typical wallet.
 
 <br>
-![]()<br>
+![Bybit_Exploiter3](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/part2Img/Bybit_Exploiter3.png)<br>
 
 This wallet called **Bybit Exploiter 3** paid out the 10,000 stolen money in two installments. OK, it’s pretty simple, let’s continue.
 Click on **Bybit Exploiter 54**, the money laundering operation has begun.
 
 <br>
-![]()<br>
-![]()<br>
+![Bybit_Exploiter54_Laundering](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/part2Img/Bybit_Exploiter54_Laundering.png)<br>
+![Bybit_Exploiter54_Laundering2](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/part2Img/Bybit_Exploiter54_Laundering2.png)<br>
 
 The money was divided into dozens of different parts and deposited into a bunch of wallets. This is the classic money laundering starter,
 the flowers scattered by the goddess(The more scattered the money is, the harder it is to track. You can still track where a big rock rolls to,
@@ -63,20 +63,20 @@ That's it. The depth is not that great, and it reaches the bottom within 10. In 
 the hacker has basically only made 10 effective operations on a single fund.
 
 <br>
-![]()<br>
+![analysisChart](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/part2Img/analysisChart.png)<br>
 
 The blue dot here is the marked Bybit Exploiter, which is the wallet where the initial stolen money entered. Let's select these points separately.
 
 <br>
-![]()<br>
+![BlueDot](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/part2Img/BlueDot.png)<br>
 
 Obviously, most of the nodes did not transfer funds outward, which is consistent with our previous judgment that only about 80 million US dollars were scattered among various addresses.
 
 Looking at the picture, most of the points in the big picture are in a tree-like structure. This is how the hacker breaks the money down step by step.
-However, there are some large clusters that are very eye-catching. You can investigate.
+However, there are some large clusters that are very \"eye-catching\". You can investigate.
 
 <br>
-![]()<br>
+![furtherInvestigation](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/part2Img/furtherInvestigation.png)<br>
 
 Let's find the center points first. The center points are:
 1. 0x963737c550e70ffe4d59464542a28604edb2ef9a (Hackers deposited 300 ETH and found that it was **unionchain.ai**, which seems to be a money laundering service)
@@ -91,7 +91,7 @@ Next, let’s look for cross-chain bridges and mixers:
 The green dots in the big picture are the open source contracts we detected. Let’s check them out.
 
 <br>
-![]()<br>
+![GreenAndRedDots](https://github.com/wls503pl/BigEvents/blob/main/01_Bybit_Hacked_event_20250221/part2Img/GreenAndRedDots.png)<br>
 
 These smart contracts all have transfers from the hacker's address, and they are all open source, so they should be from legitimate projects on the chain.
 Let's first drag out the list to match the contract address and contract name.
